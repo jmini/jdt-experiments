@@ -1,0 +1,43 @@
+//tag::vardef[]
+:gh-repo-owner: jmini
+:gh-repo-name: jdt-experiments
+:project-name: Eclipse JDT Experiments
+:branch: master
+:twitter-handle: j2r2b
+:license: http://www.eclipse.org/legal/epl-v10.html
+:license-name: Eclipse Public License - v 1.0
+
+:git-repository: {gh-repo-owner}/{gh-repo-name}
+:homepage: https://{gh-repo-owner}.github.io/{gh-repo-name}
+:issues: https://github.com/{repository}/issues
+:setup: https://raw.githubusercontent.com/{repository}/{branch}/{oomph-file}
+:src-folder-url: https://github.com/{repository}/tree/{branch}/{src-folder-name}
+//end::vardef[]
+
+//tag::header[]
+= {project-name}
+Experiments with Eclipse JDT (Java development tools).
+//end::header[]
+
+//tag::description[]
+== Description
+This repository contains some experiments I do with Eclipse JDT.
+
+* ...
+
+//end::description[]
+Read more on the link:{homepage}[project home page].
+
+//tag::contact-section[]
+== Get in touch
+
+Use the link:{issues}[{project-name} issue tracker] on GitHub.
+
+You can also contact me on Twitter: link:https://twitter.com/{twitter-handle}[@{twitter-handle}]
+//end::contact-section[]
+
+//tag::license-section[]
+== License
+
+link:{license}[{license-name}]
+//end::license-section[]

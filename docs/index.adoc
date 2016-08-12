@@ -1,0 +1,26 @@
+:github-readme: ../README.adoc
+
+include::{github-readme}[tags=vardef]
+
+:bintraypage: https://bintray.com/jmini/maven/
+:projectpage: https://github.com/{gh-repo-owner}/{gh-repo-name}
+
+include::{github-readme}[tags=header]
+
+== URLs
+
+* link:{homepage}[Project home] (this page)
+* link:{projectpage}[GitHub project]
+//* link:{bintraypage}[Binaries on Bintray]
+* link:{issues}[Issue tracker]
+
+TIP: Do you want to improve this page? Please git-link:self[edit it on GitHub, edit].
+
+include::{github-readme}[tags=description]
+
+=== ...
+
+include::{github-readme}[tags=contact-section]
+
+include::{github-readme}[tags=license-section]
+
