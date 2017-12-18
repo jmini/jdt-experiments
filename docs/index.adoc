@@ -18,7 +18,11 @@ TIP: Do you want to improve this page? Please git-link:self[edit it on GitHub, e
 
 include::{github-readme}[tags=description]
 
-=== ...
+=== java-formatter
+
+Usage of the JDT from a simple Java main method (Java SE only, no OSGi, no maven tycho).
+All dependencies are fetched from Maven Central.
+See blog post: link:https://jmini.github.io/blog/2017/2017-01-10_use-eclipse-jdt-in-java-app.html[Use the Eclipse Java Development Tools in a Java SE application]
 
 include::{github-readme}[tags=contact-section]
 

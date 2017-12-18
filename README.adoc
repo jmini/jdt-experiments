@@ -4,8 +4,8 @@
 :project-name: Eclipse JDT Experiments
 :branch: master
 :twitter-handle: j2r2b
-:license: http://www.eclipse.org/legal/epl-v10.html
-:license-name: Eclipse Public License - v 1.0
+:license: https://www.eclipse.org/org/documents/epl-2.0/EPL-2.0.html
+:license-name: Eclipse Public License - v 2.0
 
 :git-repository: {gh-repo-owner}/{gh-repo-name}
 :homepage: https://{gh-repo-owner}.github.io/{gh-repo-name}
