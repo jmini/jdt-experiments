@@ -23,7 +23,7 @@ Experiments with Eclipse JDT (Java development tools).
 == Description
 This repository contains some experiments I do with Eclipse JDT.
 
-* ...
+* java-formatter
 
 //end::description[]
 Read more on the link:{homepage}[project home page].
