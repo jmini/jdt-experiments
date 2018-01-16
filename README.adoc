@@ -9,9 +9,7 @@
 
 :git-repository: {gh-repo-owner}/{gh-repo-name}
 :homepage: https://{gh-repo-owner}.github.io/{gh-repo-name}
-:issues: https://github.com/{repository}/issues
-:setup: https://raw.githubusercontent.com/{repository}/{branch}/{oomph-file}
-:src-folder-url: https://github.com/{repository}/tree/{branch}/{src-folder-name}
+:issues: https://github.com/{git-repository}/issues
 //end::vardef[]
 
 //tag::header[]
