@@ -1,4 +1,5 @@
-:github-readme: ../README.adoc
+:rootdir: ../
+:github-readme: {rootdir}/README.adoc
 
 include::{github-readme}[tags=vardef]
 
@@ -18,11 +19,11 @@ TIP: Do you want to improve this page? Please git-link:self[edit it on GitHub, e
 
 include::{github-readme}[tags=description]
 
-=== java-formatter
+// java-formatter
 
-Usage of the JDT from a simple Java main method (Java SE only, no OSGi, no maven tycho).
-All dependencies are fetched from Maven Central.
-See blog post: link:https://jmini.github.io/blog/2017/2017-01-10_use-eclipse-jdt-in-java-app.html[Use the Eclipse Java Development Tools in a Java SE application]
+include::{rootdir}/java-formatter/README.adoc[leveloffset=1]
+
+Source code is available is in the git-link:java-formatter/[java-formatter] folder.
 
 include::{github-readme}[tags=contact-section]
 
