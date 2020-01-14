@@ -1,0 +1,4 @@
+== programcreek-standalone
+
+The JDT examples presented in this project are not relying on a Workspace.
+They can be executed in a traditional Java SE application (a simple `main(String args[])` method could be used instead of the unit-test).
