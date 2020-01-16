@@ -1,0 +1,14 @@
+== programcreek-osgi
+
+The JDT examples presented in this project use operations (search index, Built-in AST Rewrite, …) that require a Workspace.
+
+A Workspace can be created programmatically and doesn't need to fire up the Eclipse UI, but this operation requires an OSGi runtime.
+The services provided by `org.eclipse.core.runtime` have to be available (the Workspace code in `org.eclipse.core.resources` rely on those).
+
+NOTE: The Workspace location is driven by the `osgi.instance.area` property.
+
+To run the tests inside an OSGi container, the proposed solution relies on the link:https://github.com/bndtools/bnd/tree/master/maven/bnd-maven-plugin[maven bnd plugins]. This makes the pom file more complex than for plain java projects.
+
+To execute the tests in an IDE, be sure to run them inside an OSGi container (in the same way the maven build is doing it).
+If you are using Eclipse IDE, consider installing link:https://bndtools.org/[bndtools].
+IntelliJ IDEA Ultimate seems also to have support for OSGi and `bnd`.

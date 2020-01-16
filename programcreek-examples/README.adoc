@@ -1,0 +1,11 @@
+== Programcreek examples
+
+The two projects `programcreek-osgi` and `programcreek-standalone` contain unit-tests based on examples from the articles of the link:https://www.programcreek.com/2011/01/best-java-development-tooling-jdt-and-astparser-tutorials/[Eclipse JDT Tutorials] proposed by the site `www.programcreek.com`.
+
+Maven can be used to run the unit-test and to see the JDT code in action.
+
+----
+mvn verify
+----
+
+The code is spitted into two sub-projects, depending if the JDT code used in the example needs a Workspace (that requires an OSGi runtime) or not.

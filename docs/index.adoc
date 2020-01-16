@@ -25,6 +25,18 @@ include::{rootdir}/java-formatter/README.adoc[leveloffset=1]
 
 Source code is available is in the git-link:java-formatter/[java-formatter] folder.
 
+// programcreek
+
+include::{rootdir}/programcreek-examples/README.adoc[leveloffset=1]
+
+include::{rootdir}/programcreek-examples/programcreek-osgi/README.adoc[leveloffset=2]
+
+Source code is available is in the git-link:programcreek-examples/programcreek-osgi/[programcreek-osgi] folder.
+
+include::{rootdir}/programcreek-examples/programcreek-standalone/README.adoc[leveloffset=2]
+
+Source code is available is in the git-link:programcreek-examples/programcreek-standalone/[programcreek-standalone] folder.
+
 include::{github-readme}[tags=contact-section]
 
 include::{github-readme}[tags=license-section]
