@@ -1,0 +1,8 @@
+dependencies {
+    implementation platform('fr.jmini.ecentral:eclipse-platform-dependencies:4.14')
+    implementation 'org.eclipse.jdt:org.eclipse.jdt.core'
+    testImplementation libs.junit.api
+    testImplementation libs.assertj.core
+
+    testRuntimeOnly libs.junit.engine
+}

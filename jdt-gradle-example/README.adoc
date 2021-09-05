@@ -1,0 +1,10 @@
+== JDT Gradle example
+
+Usage of JDT inside a Gradle build.
+
+Two modules (inspired by the `gradle init` task):
+
+* `utilities` uses JDT to format java-code.
+* `app` provides a main method to print some "hello-world" and uses `utilities` to format an example code snippet.
+
+The project and its modules are built with Gradle.

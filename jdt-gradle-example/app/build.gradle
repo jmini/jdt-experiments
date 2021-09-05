@@ -1,0 +1,16 @@
+plugins {
+    id 'application'
+}
+
+dependencies {
+    implementation project(':utilities')
+
+    testImplementation libs.junit.api
+    testImplementation libs.assertj.core
+    testRuntimeOnly libs.junit.engine
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'fr.jmini.jdt.gradle.example.app.App'
+}
