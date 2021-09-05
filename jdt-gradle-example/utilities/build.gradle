@@ -1,6 +1,16 @@
+eclipseMavenCentral {
+    release '4.14.0', {
+        implementation 'org.eclipse.jdt.core'
+
+        // specify this to add the native jars for this platform
+        useNativesForRunningPlatform()
+
+        // specify that all transitive dependencies should be from this release
+        constrainTransitivesToThisRelease()
+    }
+}
+
 dependencies {
-    implementation platform('fr.jmini.ecentral:eclipse-platform-dependencies:4.14')
-    implementation 'org.eclipse.jdt:org.eclipse.jdt.core'
     testImplementation libs.junit.api
     testImplementation libs.assertj.core
 
