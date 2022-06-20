@@ -1,0 +1,47 @@
+buildscript {
+    dependencies {
+        classpath 'com.diffplug.gradle:goomph:3.37.0'
+    }
+}
+
+plugins {
+    id 'java'
+}
+apply plugin: 'com.diffplug.eclipse.mavencentral'
+
+wrapper {
+    gradleVersion = '7.1'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+eclipseMavenCentral {
+    release '4.24.0', {
+        implementation 'org.eclipse.jdt.core'
+
+        // specify this to add the native jars for this platform
+        useNativesForRunningPlatform()
+
+        // specify that all transitive dependencies should be from this release
+        constrainTransitivesToThisRelease()
+    }
+}
+
+dependencies {
+    testImplementation libs.junit.api
+    testImplementation libs.assertj.core
+
+    testRuntimeOnly libs.junit.engine
+}
