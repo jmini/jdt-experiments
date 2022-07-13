@@ -31,11 +31,16 @@ class LerimpocRunnerTest {
                 .collect(toSet());
 
         Path buildDir = Files.createTempDirectory("test");
+        Path outputDir = Files.createTempDirectory("output");
 
         LerimpocInput input = new LerimpocInput();
         input.setProjectName("Test project");
+        input.setOutputDir(outputDir);
 
         new LerimpocRunner(buildDir, bundles, input).runEquinox();
+
+        assertThat(outputDir).isDirectory();
+        assertThat(outputDir.resolve("output.txt")).hasContent("== Test project\n");
     }
 
     private static Set<Path> readResource(String name) throws IOException {
