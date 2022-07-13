@@ -1,0 +1,8 @@
+= lerimpoc
+
+Example setup that demonstrates how a JDT project can be created headless inside an OSGi container.
+
+* `lerimpoc-api`: this module contains the API to exchange information between outside of the OSGi framework and in the service. It is mainly about having an interface for the service (`LerimpocService`).
+* `lerimpoc-impl`: the module contains the code that will be executed inside the OSGi server. This is mainly the implementation of the `LerimpocService`
+* `lerimpoc-run`: the module contains the code starting the OSGi framework, starting the bundles and calling the desired service (see `LerimpocRunner`). The tests in that module are plain JUnit tests.
+* `lerimpoc-run`: the module is using and OSGi test framework and bnd to make sure that the tests will already be running in an OSGi container. This can be seen as an alternative to `lerimpoc-run`, but for test purpose only.

@@ -1,0 +1,39 @@
+rootProject.name = name
+
+include 'lerimpoc-api'
+include 'lerimpoc-impl'
+include 'lerimpoc-run'
+include 'lerimpoc-test'
+
+
+enableFeaturePreview('VERSION_CATALOGS')
+
+dependencyResolutionManagement {
+    versionCatalogs {
+        libs {
+            version('junit-version', '5.6.2')
+            version('slf4j-version', '1.7.25')
+
+            //JUNIT
+            alias('junit.jupiter.api').to('org.junit.jupiter', 'junit-jupiter-api').versionRef('junit-version')
+            alias('junit.jupiter.engine').to('org.junit.jupiter', 'junit-jupiter-engine').versionRef('junit-version')
+            alias('junit.platform.launcher').to('org.junit.platform', 'junit-platform-launcher').version('1.7.0')
+
+            //ASSERT-J
+            alias('assertj.core').to('org.assertj' , 'assertj-core').version('3.11.1')
+
+            //OSGI
+            alias('org.eclipse.osgi').to('org.eclipse.platform', 'org.eclipse.osgi').version('3.15.100')
+            alias('org.apache.felix.scr').to('org.apache.felix', 'org.apache.felix.scr').version('2.1.20')
+            alias('org.osgi.service.component.annotations').to('org.osgi', 'org.osgi.service.component.annotations').version('1.4.0')
+            alias('org.osgi.test.junit5').to('org.osgi', 'org.osgi.test.junit5').version('0.9.0');
+            alias('org.osgi.util.function').to('org.osgi', 'org.osgi.util.function').version('1.1.0')
+            alias('org.osgi.util.promise').to('org.osgi', 'org.osgi.util.promise').version('1.1.1')
+            alias('osgi.annotation').to('org.osgi', 'osgi.annotation').version('7.0.0')
+
+            //SLF4J
+            alias('slf4j.api').to('org.slf4j', 'slf4j-api').versionRef('slf4j-version')
+            alias('slf4j.simple').to('org.slf4j', 'slf4j-simple').versionRef('slf4j-version')
+        }
+    }
+}

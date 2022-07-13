@@ -1,0 +1,40 @@
+plugins {
+    id 'com.diffplug.spotless' version '6.0.0' apply false
+    id 'biz.aQute.bnd.builder' version '6.1.0' apply false
+}
+
+wrapper {
+    gradleVersion = '7.3'
+}
+
+subprojects {
+    apply plugin: 'signing'
+    apply plugin: 'biz.aQute.bnd.builder'
+    apply plugin: 'java-library'
+    apply plugin: 'com.diffplug.spotless'
+
+    group = 'fr.jmini.lerimpoc'
+
+    repositories {
+        // mavenLocal()
+        mavenCentral()
+    }
+
+    java {
+        withJavadocJar()
+        withSourcesJar()
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(8)
+        }
+    }
+
+    spotless {
+        java {
+            importOrder 'java', 'javax', 'org', 'com', ''
+            removeUnusedImports()
+
+            // available versions are: https://github.com/diffplug/spotless/tree/master/lib-extra/src/main/resources/com/diffplug/spotless/extra/eclipse_jdt_formatter
+            eclipse('4.17.0').configFile('.settings/org.eclipse.jdt.core.prefs')
+        }
+    }
+}

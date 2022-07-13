@@ -1,0 +1,37 @@
+configurations {
+    osgi
+}
+
+dependencies {
+    api project(':lerimpoc-api')
+    api libs.org.eclipse.osgi
+    implementation libs.slf4j.api
+
+    testImplementation libs.junit.jupiter.api
+    testImplementation libs.assertj.core
+    testImplementation libs.org.eclipse.osgi
+    testRuntimeOnly libs.junit.jupiter.engine
+    testRuntimeOnly libs.junit.platform.launcher
+    testRuntimeOnly libs.slf4j.simple
+
+    osgi project(':lerimpoc-impl')
+    osgi libs.org.apache.felix.scr
+    osgi libs.org.osgi.util.function
+    osgi libs.org.osgi.util.promise
+}
+
+test {
+    useJUnitPlatform()
+}
+
+ext.genOutputDir = file("$buildDir/generated/test-resources")
+
+def generateTestResourcesTask = tasks.register('generateTestResources') {
+    ext.outputFile = file("$genOutputDir/osgi.txt")
+    outputs.file(outputFile)
+    doLast {
+        outputFile.text = configurations.osgi.resolve().join('\n')
+    }
+}
+
+sourceSets.test.output.dir genOutputDir, builtBy: generateTestResourcesTask

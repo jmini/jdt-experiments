@@ -1,0 +1,7 @@
+// Because this lerimpoc-impl has almost no dependency we do not need a lot of bundle to be started.
+
+org.osgi.util.function
+org.osgi.util.promise
+org.apache.felix.scr
+
+lerimpoc-impl

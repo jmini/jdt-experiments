@@ -1,0 +1,26 @@
+dependencies {
+    implementation project(':lerimpoc-api')
+    implementation libs.org.eclipse.osgi
+    implementation libs.org.osgi.test.junit5
+    implementation libs.assertj.core
+    runtimeOnly libs.junit.jupiter.engine
+    runtimeOnly libs.junit.platform.launcher
+
+    runtimeOnly project(':lerimpoc-impl')
+    runtimeOnly libs.org.apache.felix.scr
+    runtimeOnly libs.org.osgi.util.function
+    runtimeOnly libs.org.osgi.util.promise
+}
+
+def resolveTask = tasks.register('resolve', aQute.bnd.gradle.Resolve) {
+    bndrun = project.file('test.bndrun')
+}
+
+def testOSGiTask = tasks.register('testOSGi', aQute.bnd.gradle.TestOSGi) {
+    dependsOn resolveTask
+    bndrun = project.file('test.bndrun')
+}
+
+tasks.named('check') {
+    dependsOn testOSGiTask
+}

@@ -1,0 +1,10 @@
+dependencies {
+    api project(':lerimpoc-api')
+    compileOnly libs.org.osgi.service.component.annotations
+}
+
+jar {
+  bundle {
+    bnd("Bundle-Name": "Lerimpoc Impl")
+  }
+}
