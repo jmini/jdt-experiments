@@ -40,7 +40,13 @@ class LerimpocRunnerTest {
         new LerimpocRunner(buildDir, bundles, input).runEquinox();
 
         assertThat(outputDir).isDirectory();
-        assertThat(outputDir.resolve("output.txt")).hasContent("== Test project\n");
+        assertThat(outputDir.resolve("output.txt")).hasContent("== Test project\n"
+                + "org.eclipse.osgi\n"
+                + "org.osgi.util.function\n"
+                + "org.osgi.util.promise\n"
+                + "org.apache.felix.scr\n"
+                + "lerimpoc-impl\n"
+                + "");
     }
 
     private static Set<Path> readResource(String name) throws IOException {

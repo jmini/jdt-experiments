@@ -1,5 +1,6 @@
 dependencies {
     api project(':lerimpoc-api')
+    implementation libs.org.eclipse.osgi
     compileOnly libs.org.osgi.service.component.annotations
 }
 

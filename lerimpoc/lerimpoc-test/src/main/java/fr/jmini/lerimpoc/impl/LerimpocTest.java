@@ -34,6 +34,25 @@ public class LerimpocTest {
         service.run(input);
 
         assertThat(outputDir).isDirectory();
-        assertThat(outputDir.resolve("output.txt")).hasContent("== Example project\n");
+        assertThat(outputDir.resolve("output.txt")).hasContent("== Example project\n"
+                + "org.eclipse.osgi\n"
+                + "junit-jupiter-api\n"
+                + "junit-jupiter-engine\n"
+                + "junit-platform-commons\n"
+                + "junit-platform-engine\n"
+                + "junit-platform-launcher\n"
+                + "lerimpoc-api\n"
+                + "lerimpoc-impl\n"
+                + "lerimpoc-test\n"
+                + "org.apache.felix.scr\n"
+                + "org.assertj.core\n"
+                + "org.opentest4j\n"
+                + "org.osgi.test.common\n"
+                + "org.osgi.test.junit5\n"
+                + "org.osgi.util.function\n"
+                + "org.osgi.util.promise\n"
+                + "biz.aQute.tester.junit-platform\n"
+                + "");
+
     }
 }
