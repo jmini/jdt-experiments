@@ -1,0 +1,90 @@
+== Run ECJ cli with JBang
+
+ECJ is the batch compiler from Eclipse and is available as `ecj.jar`. 
+
+It is published on Maven Central:
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.eclipse.jdt</groupId>
+    <artifactId>ecj</artifactId>
+    <version>${ecj-version}</version>
+</dependency>
+---
+
+
+=== First example with jbang and version 3.25.0
+
+So it is possible to run it with https://www.jbang.dev/[jbang]:
+
+[source, shell]
+----
+jbang org.eclipse.jdt:ecj:3.25.0 -version
+----
+
+Will print:
+----
+[jbang] Resolving dependencies...
+[jbang]    org.eclipse.jdt:ecj:3.25.0
+[jbang] Dependencies resolved
+
+Eclipse Compiler for Java(TM) v20210223-0522, 3.25.0, Copyright IBM Corp 2000, 2020. All rights reserved.
+----
+
+After the first run you will not even have the `[jbang]` lines.
+
+
+=== Using the latest released ECJ version
+
+Instead of hard-coding the `ECJ` version, it is possible to use the `RELEASE` meta-version.
+
+
+[source, shell]
+----
+jbang org.eclipse.jdt:ecj:RELEASE -help
+----
+
+
+=== Create a jbang alias
+
+If you need this more often, you can even create an alias pointing to the latest version:
+
+[source, shell]
+----
+jbang alias add --name ecj org.eclipse.jdt:ecj:RELEASE
+----
+
+Then `jbang ecj -version` will return (at time of writing):
+
+[source, shell]
+---
+Eclipse Compiler for Java(TM) v20230218-1114, 3.33.0, Copyright IBM Corp 2000, 2020. All rights reserved.
+---
+
+
+=== Additional notes:
+
+Older coordinates:
+
+[source, xml]
+----
+<dependency>
+    <groupId>org.eclipse.jdt.core.compiler</groupId>
+    <artifactId>ecj</artifactId>
+    <version>${ecj-version}</version>
+</dependency>
+---
+
+It is available on the P2 Update site of each Eclipse release, as bundle `org.eclipse.jdt.core.compiler.batch`.
+
+Java version:
+
+* EJC `3.26.0` is the last version where Java 8 can be used.
+* ECJ `3.33.0` (last release version at time of writing) can be run with Java 11.
+
+
+=== See also 
+
+* https://wiki.eclipse.org/JDT_Core_Programmer_Guide/ECJ[ECJ on the Eclipse Wiki]
+* https://manpages.ubuntu.com/manpages/bionic/man1/ecj.1.html[`ecj` man page]

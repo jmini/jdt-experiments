@@ -25,6 +25,7 @@ This repository contains some experiments I do with Eclipse JDT.
 * programcreek examples
 ** programcreek-osgi
 ** programcreek-standalone
+* run-ecj-with-jbang
 
 //end::description[]
 Read more on the link:{homepage}[project home page].
