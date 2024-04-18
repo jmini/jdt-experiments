@@ -11,7 +11,7 @@ It is published on Maven Central:
     <artifactId>ecj</artifactId>
     <version>${ecj-version}</version>
 </dependency>
----
+----
 
 
 === First example with jbang and version 3.25.0
@@ -58,9 +58,9 @@ jbang alias add --name ecj org.eclipse.jdt:ecj:RELEASE
 Then `jbang ecj -version` will return (at time of writing):
 
 [source, shell]
----
+----
 Eclipse Compiler for Java(TM) v20230218-1114, 3.33.0, Copyright IBM Corp 2000, 2020. All rights reserved.
----
+----
 
 
 === Additional notes:
@@ -74,7 +74,7 @@ Older coordinates:
     <artifactId>ecj</artifactId>
     <version>${ecj-version}</version>
 </dependency>
----
+----
 
 It is available on the P2 Update site of each Eclipse release, as bundle `org.eclipse.jdt.core.compiler.batch`.
 
