@@ -3,3 +3,5 @@
 Usage of the JDT from a simple Java main method (Java SE only, no OSGi, no maven tycho).
 All dependencies are fetched from Maven Central.
 See blog post: link:https://jmini.github.io/blog/2017/2017-01-10_use-eclipse-jdt-in-java-app.html[Use the Eclipse Java Development Tools in a Java SE application]
+
+See how the same code can be executed with jbang in the project link:../run-jdt-formatter-with-jbang/[`run-jdt-formatter-with-jbang`].

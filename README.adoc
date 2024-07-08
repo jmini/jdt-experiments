@@ -21,7 +21,7 @@ Experiments with Eclipse JDT (Java development tools).
 == Description
 This repository contains some experiments I do with Eclipse JDT.
 
-* java-formatter
+* java-formatter (maven or jbang)
 * programcreek examples
 ** programcreek-osgi
 ** programcreek-standalone

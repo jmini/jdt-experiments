@@ -1,0 +1,16 @@
+== Run JDT formatter with JBang
+
+This is a very simple script that illustrates how JDT can be executed from a simple link:https://jbang.dev/[JBang] script.
+The code is the same as the one in the link:../java-formatter[`java-formatter`] project.
+
+To use only dependencies from a specific eclipse release (the POM files declare open ranges version for the dependencies) a BOM file published by the link:https://jmini.github.io/ecentral/[ECentral project] is used to constraint the version.
+
+=== Usage
+
+Just run:
+
+```
+jbang JavaFormatter.java
+```
+
+And the code located in the corresponding class (link:JavaFormatter.java[`JavaFormatter.java`]) will be executed.
