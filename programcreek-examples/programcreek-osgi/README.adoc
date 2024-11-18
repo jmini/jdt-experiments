@@ -12,3 +12,5 @@ To run the tests inside an OSGi container, the proposed solution relies on the l
 To execute the tests in an IDE, be sure to run them inside an OSGi container (in the same way the maven build is doing it).
 If you are using Eclipse IDE, consider installing link:https://bndtools.org/[bndtools].
 IntelliJ IDEA Ultimate seems also to have support for OSGi and `bnd`.
+
+If you would prefer to run those tests in a Gradle build, check the link:../../jdt-bndtest-gradle-example[jdt-bndtest-gradle-example] project.

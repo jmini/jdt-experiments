@@ -1,0 +1,23 @@
+== Jdt bndtest gradle example
+
+This projects shows how to run some JDT code requiring an OSGi runtime inside some unit-test started with bndtools.
+Gradle is used to build and run the tests.
+
+=== Bnd
+
+OSGi tests are located in the `osgiTest` source set.
+The tasks defined in the `biz.aQute.bnd.builder` plugin are used to resolve the `*.bndrun` file and run the tests.
+
+=== Jars from maven central
+
+Jars are loaded from maven central and the `com.diffplug.eclipse.mavencentral` plugin is used to use the specific version corresponding to a given Eclipse release.
+
+=== icu4j dependency
+
+Bundle `org.eclipse.text` require bundle `com.ibm.icu.text`, which is not directly available on maven central.
+
+The jar located at `com.ibm.icu:icu4j:64.2` is very close from what we need, but `com.ibm.icu_64.2.0.v20190507-1337.jar` published on Eclipse Orbit has different metadata.
+So the jar was published on an alternative maven repository (url: `https://dev.jmini.fr/`, coordinates `patched.com.ibm.icu:icu4j:64.2.0.v20190507-1337`).
+
+Check the tool https://jmini.github.io/repub-jar/ if you need to know how this was done.
+

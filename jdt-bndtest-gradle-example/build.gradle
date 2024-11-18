@@ -1,0 +1,93 @@
+plugins {
+    id 'biz.aQute.bnd.builder' version '6.1.0'
+    id 'com.diffplug.eclipse.mavencentral' version '3.33.3'
+    id 'java-library'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+repositories {
+    maven {
+        url "https://dev.jmini.fr/"
+        content {
+            includeGroupByRegex "patched\\..+"
+        }
+    }
+    mavenCentral()
+    // mavenLocal()
+}
+
+sourceSets {
+    osgiTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+configurations {
+    testCompileOnly.extendsFrom compileOnly
+    osgiTestCompileOnly.extendsFrom compileOnly
+    osgiTestImplementation.extendsFrom implementation
+    osgiTestRuntimeOnly.extendsFrom runtimeOnly
+}
+
+eclipseMavenCentral {
+    release '4.14.0', {
+        implementation 'org.eclipse.jdt.core'
+
+        // specify this to add the native jars for this platform
+        useNativesForRunningPlatform()
+
+        // specify that all transitive dependencies should be from this release
+        constrainTransitivesToThisRelease()
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    osgiTestImplementation 'org.osgi:org.osgi.test.junit5:0.9.0'
+    osgiTestImplementation 'org.eclipse.platform:org.eclipse.osgi:3.15.100'
+    osgiTestRuntimeOnly 'patched.com.ibm.icu:icu4j:64.2.0.v20190507-1337'
+    osgiTestRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.7.0'
+    osgiTestRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+def testingBundle = tasks.register('testingBundle', aQute.bnd.gradle.Bundle) {
+    archiveClassifier = 'tests'
+    from sourceSets.osgiTest.output
+    sourceSet = sourceSets.osgiTest
+
+    bnd """\
+Bundle-SymbolicName: \${task.archiveBaseName}-\${task.archiveClassifier}
+Test-Cases: \${classes;HIERARCHY_INDIRECTLY_ANNOTATED;org.junit.platform.commons.annotation.Testable;CONCRETE}
+"""
+}
+
+def resolve = tasks.register('resolve', aQute.bnd.gradle.Resolve) {
+    bundles = files(sourceSets.osgiTest.runtimeClasspath, configurations.archives.artifacts.files)
+    bndrun = file('test.bndrun')
+}
+
+def testOSGi = tasks.register('testOSGi', aQute.bnd.gradle.TestOSGi) {
+    dependsOn resolve
+    bundles = files(sourceSets.osgiTest.runtimeClasspath, configurations.archives.artifacts.files)
+    bndrun = file('test.bndrun')
+}
+
+tasks.named('check') {
+    dependsOn testOSGi
+}
+
+artifacts {
+    archives testingBundle
+}
