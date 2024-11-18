@@ -3,7 +3,7 @@
 -tester: biz.aQute.tester.junit-platform
 -runfw: org.eclipse.osgi
 
--runee: JavaSE-1.8
+-runee: JavaSE-11
 
 ## Uncomment below to permit remote debugging on port 7001
 #-runvm: "-Xrunjdwp:transport=dt_socket,server=y,suspend=y,address=7001"
