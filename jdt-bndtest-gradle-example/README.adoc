@@ -22,3 +22,102 @@ So the jar was published on an alternative maven repository (url: `https://dev.j
 Check the tool https://jmini.github.io/repub-jar/ if you need to know how this was done.
 
 This is no longer needed with jdt version `3.22.0` and newer (Eclipse release `2020-06` version `4.16`).
+
+=== org.apache.felix.scr dependency
+
+Starting with release `2020-09` (eclipse release version `4.17`) having `org.apache.felix.scr` at runtime is mandatory to start `org.eclipse.core.resources` correctly.
+
+Otherwise there is a `java.lang.NullPointerException` during the startup being the cause of `java.lang.NoClassDefFoundError: org/eclipse/core/resources/IResource` and `java.lang.ClassNotFoundException: An error occurred while automatically activating bundle org.eclipse.core.resources`
+
+.Complete Stacktrace of the error
+[%collapsible]
+====
+
+```
+ERROR: org/eclipse/core/resources/IResource
+java.lang.NoClassDefFoundError: org/eclipse/core/resources/IResource
+        at java.base/java.lang.Class.getDeclaredMethods0(Native Method)
+        at java.base/java.lang.Class.privateGetDeclaredMethods(Class.java:3402)
+        at java.base/java.lang.Class.getDeclaredMethods(Class.java:2504)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.tryToResolveTestClass(BundleSelectorResolver.java:381)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.lambda$getSelectorsFromTestCasesHeader$27(BundleSelectorResolver.java:408)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at aQute.libg.qtokens.QuotedTokenizer$1.tryAdvance(QuotedTokenizer.java:182)
+        at java.base/java.util.Spliterator.forEachRemaining(Spliterator.java:332)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+        at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+        at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.getSelectorsFromTestCasesHeader(BundleSelectorResolver.java:420)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.computeChildren(BundleSelectorResolver.java:581)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.lambda$resolve$18(BundleSelectorResolver.java:276)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+        at java.base/java.util.Spliterators$ArraySpliterator.forEachRemaining(Spliterators.java:992)
+        at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+        at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+        at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+        at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+        at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+        at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.resolve(BundleSelectorResolver.java:270)
+        at aQute.tester.bundle.engine.discovery.BundleSelectorResolver.resolve(BundleSelectorResolver.java:103)
+        at aQute.tester.bundle.engine.BundleEngine.discover(BundleEngine.java:63)
+        at org.junit.platform.launcher.core.EngineDiscoveryOrchestrator.discoverEngineRoot(EngineDiscoveryOrchestrator.java:103)
+        at org.junit.platform.launcher.core.EngineDiscoveryOrchestrator.discover(EngineDiscoveryOrchestrator.java:85)
+        at org.junit.platform.launcher.core.DefaultLauncher.discover(DefaultLauncher.java:92)
+        at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:75)
+        at aQute.tester.junit.platform.Activator.test(Activator.java:439)
+        at aQute.tester.junit.platform.Activator.automatic(Activator.java:344)
+        at aQute.tester.junit.platform.Activator.run(Activator.java:216)
+        at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+        at aQute.launcher.Launcher.launch(Launcher.java:450)
+        at aQute.launcher.Launcher.run(Launcher.java:184)
+        at aQute.launcher.Launcher.main(Launcher.java:160)
+        at aQute.launcher.pre.EmbeddedLauncher.executeWithRunPath(EmbeddedLauncher.java:170)
+        at aQute.launcher.pre.EmbeddedLauncher.findAndExecute(EmbeddedLauncher.java:135)
+        at aQute.launcher.pre.EmbeddedLauncher.main(EmbeddedLauncher.java:52)
+Caused by: java.lang.ClassNotFoundException: An error occurred while automatically activating bundle org.eclipse.core.resources (13).
+        at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:126)
+        at org.eclipse.osgi.internal.loader.classpath.ClasspathManager.findLocalClass(ClasspathManager.java:572)
+        at org.eclipse.osgi.internal.loader.ModuleClassLoader.findLocalClass(ModuleClassLoader.java:346)
+        at org.eclipse.osgi.internal.loader.BundleLoader.findLocalClass(BundleLoader.java:398)
+        at org.eclipse.osgi.internal.loader.sources.SingleSourcePackage.loadClass(SingleSourcePackage.java:41)
+        at org.eclipse.osgi.internal.loader.BundleLoader.findClass(BundleLoader.java:456)
+        at org.eclipse.osgi.internal.loader.ModuleClassLoader.loadClass(ModuleClassLoader.java:171)
+        at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:520)
+        ... 45 more
+Caused by: org.osgi.framework.BundleException: Exception in org.eclipse.core.resources.ResourcesPlugin.start() of bundle org.eclipse.core.resources.
+        at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:835)
+        at org.eclipse.osgi.internal.framework.BundleContextImpl.start(BundleContextImpl.java:763)
+        at org.eclipse.osgi.internal.framework.EquinoxBundle.startWorker0(EquinoxBundle.java:1011)
+        at org.eclipse.osgi.internal.framework.EquinoxBundle$EquinoxModule.startWorker(EquinoxBundle.java:365)
+        at org.eclipse.osgi.container.Module.doStart(Module.java:605)
+        at org.eclipse.osgi.container.Module.start(Module.java:468)
+        at org.eclipse.osgi.framework.util.SecureAction.start(SecureAction.java:506)
+        at org.eclipse.osgi.internal.hooks.EclipseLazyStarter.postFindLocalClass(EclipseLazyStarter.java:117)
+        ... 52 more
+Caused by: java.lang.NullPointerException: Cannot invoke "org.eclipse.core.runtime.content.IContentTypeManager.addContentTypeChangeListener(org.eclipse.core.runtime.content.IContentTypeManager$IContentTypeChangeListener)" because the return value of "org.eclipse.core.runtime.Platform.getContentTypeManager()" is null
+        at org.eclipse.core.internal.resources.CharsetDeltaJob.startup(CharsetDeltaJob.java:212)
+        at org.eclipse.core.internal.resources.CharsetManager.startup(CharsetManager.java:505)
+        at org.eclipse.core.internal.resources.Workspace.startup(Workspace.java:2456)
+        at org.eclipse.core.internal.resources.Workspace.open(Workspace.java:2210)
+        at org.eclipse.core.resources.ResourcesPlugin.start(ResourcesPlugin.java:489)
+        at org.eclipse.osgi.internal.framework.BundleContextImpl$2.run(BundleContextImpl.java:814)
+        at org.eclipse.osgi.internal.framework.BundleContextImpl$2.run(BundleContextImpl.java:1)
+        at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
+        at org.eclipse.osgi.internal.framework.BundleContextImpl.startActivator(BundleContextImpl.java:806)
+        ... 59 more
+```
+
+====
+
+
+Related articles:
+
+* https://www.eclipse.org/forums/index.php/t/1106732/[Platform.getContentTypeManager() is null] 
+* https://eclipse.dev/eclipse/news/4.7/platform_isv.php#equinox-ds-felix-scr[New Declarative Services Implementation supporting OSGi R6]
