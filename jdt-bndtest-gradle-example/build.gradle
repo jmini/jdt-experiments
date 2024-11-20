@@ -31,7 +31,7 @@ configurations {
 
 eclipseMavenCentral {
     silenceEquoIDE()
-    release '4.17.0', {
+    release '4.24.0', {
         implementation 'org.eclipse.jdt.core'
 
         // specify this to add the native jars for this platform
@@ -78,6 +78,7 @@ def testOSGi = tasks.register('testOSGi', aQute.bnd.gradle.TestOSGi) {
     dependsOn resolve
     bundles = files(sourceSets.osgiTest.runtimeClasspath, configurations.archives.artifacts.files)
     bndrun = file('test.bndrun')
+    properties = ['randomTimestamp': System.currentTimeMillis()]
 }
 
 tasks.named('check') {

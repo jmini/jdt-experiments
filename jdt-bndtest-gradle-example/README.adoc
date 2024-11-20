@@ -121,3 +121,25 @@ Related articles:
 
 * https://www.eclipse.org/forums/index.php/t/1106732/[Platform.getContentTypeManager() is null] 
 * https://eclipse.dev/eclipse/news/4.7/platform_isv.php#equinox-ds-felix-scr[New Declarative Services Implementation supporting OSGi R6]
+
+=== Mandatory workspace folder
+
+With version `3.24.0` specifying a workspace folder is mandatory (corresponding to the `-data` flag).
+
+Without a workspace folder there is this error during startup:
+
+```
+java.lang.IllegalStateException: Workspace is already closed or not ready yet. Consider tracking the org.eclipse.core.resources.IWorkspace service (using your favorite technique, e.g. Declarative Services, ServiceTracker, Blueprint, ...) instead of calling the static method here to prevent such issues!
+        at org.eclipse.core.resources.ResourcesPlugin.getWorkspace(ResourcesPlugin.java:456)
+        at org.eclipse.core.resources.WorkspaceJob.<init>(WorkspaceJob.java:68)
+        at org.eclipse.jdt.internal.core.ExternalFoldersManager$1InitializeFolders.<init>(ExternalFoldersManager.java:84)
+        at org.eclipse.jdt.internal.core.ExternalFoldersManager.<init>(ExternalFoldersManager.java:98)
+        at org.eclipse.jdt.internal.core.ExternalFoldersManager.getExternalFoldersManager(ExternalFoldersManager.java:107)
+        at org.eclipse.jdt.internal.core.JavaModelManager.<init>(JavaModelManager.java:595)
+        at org.eclipse.jdt.internal.core.JavaModelManager.<clinit>(JavaModelManager.java:1206)
+        ... 65 more
+```
+
+Setting the property `osgi.instance.area` solves the issue.
+
+See: https://github.com/eclipse-platform/eclipse.platform/issues/748
