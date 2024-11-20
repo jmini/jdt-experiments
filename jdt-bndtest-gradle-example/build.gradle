@@ -1,6 +1,6 @@
 plugins {
-    id 'biz.aQute.bnd.builder' version '6.1.0'
-    id 'com.diffplug.eclipse.mavencentral' version '3.33.3'
+    id 'biz.aQute.bnd.builder' version '6.3.1'
+    id 'com.diffplug.eclipse.mavencentral' version '4.0.1'
     id 'java-library'
 }
 
@@ -30,6 +30,7 @@ configurations {
 }
 
 eclipseMavenCentral {
+    silenceEquoIDE()
     release '4.17.0', {
         implementation 'org.eclipse.jdt.core'
 
